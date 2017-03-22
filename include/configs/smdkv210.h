@@ -32,6 +32,9 @@
 #define CONFIG_SYS_CLK_FREQ		12000000
 
 /* DRAM Base */
+#define CONFIG_SYS_SDRAM_BASE		0x20000000	/* modied by zjh */
+
+/* DRAM Base */
 #define CONFIG_SYS_SDRAM_BASE		0x30000000
 
 /* Text Base */
@@ -216,5 +219,7 @@
 #define CONFIG_SMC911X_BASE    0x98800300      /* SMC911X Drive Base   */
 #define CONFIG_ENV_SROM_BANK   3       /* Select SROM Bank-3 for Ethernet*/
 #endif /* CONFIG_CMD_NET */
+
+#define CONFIG_SPL /* add by hwq */
 
 #endif	/* __CONFIG_H */
