@@ -67,6 +67,9 @@
  ***********************************************************/
 #include <config_cmd_default.h>
 
+#define CONFIG_CMDLINE_EDITING	/* add by hwq */
+#define CONFIG_AUTO_COMPLETE	/* add by hwq */
+
 #undef CONFIG_CMD_FLASH
 #undef CONFIG_CMD_IMLS
 #undef CONFIG_CMD_NAND
