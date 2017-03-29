@@ -218,10 +218,25 @@
  * Ethernet Contoller driver
  */
 #ifdef CONFIG_CMD_NET
+/* masked by hwq */
+#if 0
 #define CONFIG_SMC911X         1       /* we have a SMC9115 on-board   */
 #define CONFIG_SMC911X_16_BIT  1       /* SMC911X_16_BIT Mode          */
 #define CONFIG_SMC911X_BASE    0x98800300      /* SMC911X Drive Base   */
-#define CONFIG_ENV_SROM_BANK   3       /* Select SROM Bank-3 for Ethernet*/
+#endif
+
+/* modied by hwq */
+#define CONFIG_ENV_SROM_BANK   1       /* Select SROM Bank-1 for Ethernet*/
+/* add by zjh */
+#define CONFIG_DRIVER_DM9000
+#define CONFIG_DM9000_NO_SROM
+#define CONFIG_DM9000_BASE		0x88000000
+#define DM9000_IO				(CONFIG_DM9000_BASE)
+#define DM9000_DATA				(CONFIG_DM9000_BASE + 0x4)
+#define CONFIG_CMD_PING
+#define CONFIG_IPADDR			192.168.1.120
+#define CONFIG_SERVERIP			192.168.1.100
+#define CONFIG_ETHADDR			1A:2A:3A:4A:5A:6A
 #endif /* CONFIG_CMD_NET */
 
 #define CONFIG_SPL /* add by hwq */
