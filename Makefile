@@ -696,7 +696,8 @@ DO_STATIC_RELA =
 endif
 
 # Always append ALL so that arch config.mk's can add custom ones
-ALL-y += u-boot.srec u-boot.bin System.map
+# combine add by hwq
+ALL-y += u-boot.srec u-boot.bin System.map combine
 
 ALL-$(CONFIG_NAND_U_BOOT) += u-boot-nand.bin
 ALL-$(CONFIG_ONENAND_U_BOOT) += u-boot-onenand.bin
@@ -743,6 +744,14 @@ quiet_cmd_pad_cat = CAT     $@
 cmd_pad_cat = $(cmd_objcopy) && $(append) || rm -f $@
 
 all:		$(ALL-y)
+
+#add by hwq
+combine: u-boot.bin spl/u-boot-spl.bin FORCE
+	cp $(objtree)/spl/smdkv210-spl.bin $(objtree)/tmp.bin
+	truncate $(objtree)/tmp.bin -c -s 16K
+	cat $(objtree)/u-boot.bin >> $(objtree)/tmp.bin
+	cp $(objtree)/tmp.bin $(objtree)/u-boot-a.bin
+#	cp $(objtree)/u-boot-a.bin /mnt/hgfs/E/tftpd32.400/
 
 PHONY += dtbs
 dtbs dts/dt.dtb: checkdtc u-boot
