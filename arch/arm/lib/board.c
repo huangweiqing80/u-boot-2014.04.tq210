@@ -515,6 +515,11 @@ void board_init_r(gd_t *id, ulong dest_addr)
 	ulong flash_size;
 #endif
 
+	/* add by hwq */
+	beeper_on(1);	// ¿ªÆô·äÃùÆ÷	
+	mdelay(300);	// ÑÓÊ±300ms	
+	beeper_on(0);	// ¹Ø±Õ·äÃùÆ÷
+
 	gd->flags |= GD_FLG_RELOC;	/* tell others: relocation done */
 	bootstage_mark_name(BOOTSTAGE_ID_START_UBOOT_R, "board_init_r");
 

@@ -105,6 +105,23 @@ int board_eth_init(bd_t *bis)
 	return rc;
 }
 
+// add by hwq
+void beeper_on(u8 on)
+{
+	u32 *gpd0con = (u32 *)0xE02000A0;		// GPD0CON
+	u32 *gpd0dat = (u32 *)0xE02000A4;		// GPD0DAT
+
+	/* ÅäÖÃGPD0[1]ÎªÊä³ö */
+	writel((readl(gpd0con) & ~(0xF << 4)) | (1 << 4), gpd0con);
+
+	if (on)
+		// ¿ªÆô·äÃùÆ÷		
+		writel(readl(gpd0dat) | (1 << 1), gpd0dat);
+	else	
+		// ¹Ø±Õ·äÃùÆ÷		
+		writel(readl(gpd0dat) & ~(1 << 1), gpd0dat);
+}
+
 #else	/* CONFIG_SPL_BUILD (add by hwq) */
 
 void clock_init(void)
